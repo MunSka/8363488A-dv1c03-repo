@@ -46,6 +46,12 @@ pipeline {
                 """
             }
         }
-
+        stage('8363488A-S2') {
+            steps {
+                sh """
+                echo "8363488A-S2: Release Windows checked - Continue the pipeline."
+                """
+            }
+        }
     }   
 }
