@@ -60,5 +60,6 @@ pipeline {
                 docker ps --filter "name=8363488A-web-server"
                 """
             }
-     }   
+        }   
+        }
 }
