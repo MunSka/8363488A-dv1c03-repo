@@ -53,5 +53,12 @@ pipeline {
                 """
             }
         }
-    }   
+        stage('8363488A-S3') {
+            steps {
+                sh """
+                echo "8363488A-S3: Web Server is setup and running"
+                docker ps --filter "name=8363488A-web-server"
+                """
+            }
+     }   
 }
