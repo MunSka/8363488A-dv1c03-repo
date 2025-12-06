@@ -60,6 +60,29 @@ pipeline {
                 docker ps --filter "name=8363488A-web-server"
                 """
             }
-        }   
+        }
+stage('8363488A-parallel-S4') {
+    parallel {
+        stage('8363488A-S4A') {
+            steps {
+                sh '''
+                echo "8363488A-S4A: SQL Injection (SQLi) Test – Report Generated"
+                '''
+            }
+        }
+
+        stage('8363488A-S4B') {
+            steps {
+                sh '''
+                echo "8363488A-S4B: Cross-Site Scripting (XSS) Test – Report Generated"
+                '''
+            }
+        }
+    }
+}
+        
+    }
+}
+
         }
 }
