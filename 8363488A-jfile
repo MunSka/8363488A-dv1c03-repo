@@ -78,6 +78,42 @@ stage('8363488A-parallel-S4') {
                 '''
             }
         }
+
+    }
+}
+stage('8363488A-S5') {
+    steps {
+        script {
+            def userInput = input(
+                message: '8363488A, after checking security reports, continue the pipeline?',
+                parameters: [
+                    [$class: 'ChoiceParameterDefinition', 
+                     choices: "Proceed\nAbort", 
+                     description: 'Select an action', 
+                     name: 'ACTION']
+                ]
+            )
+            
+            if (userInput == 'Proceed') {
+                echo "8363488A-S5: Approve to continue the pipeline."
+                // Set a flag to allow next stage
+                currentBuild.description = "Proceed"
+            } else {
+                echo "Pipeline aborted by user."
+                error("User selected Abort") // aborts pipeline
+            }
+        }
+    }
+}
+
+stage('8363488A-S6') {
+    when {
+        expression { return currentBuild.description == "Proceed" }
+    }
+    steps {
+        sh """
+        echo "8363488A-S6: Getting ready for next phase"
+        """
     }
 }
         
