@@ -96,11 +96,10 @@ stage('8363488A-S5') {
             
             if (userInput == 'Proceed') {
                 echo "8363488A-S5: Approve to continue the pipeline."
-                // Set a flag to allow next stage
                 currentBuild.description = "Proceed"
             } else {
                 echo "Pipeline aborted by user."
-                error("User selected Abort") // aborts pipeline
+                error("User selected Abort")
             }
         }
     }
